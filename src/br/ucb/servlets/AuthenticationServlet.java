@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.ucb.validators.NameValidator;
 
@@ -41,7 +42,10 @@ public class AuthenticationServlet extends HttpServlet {
 		Writer writer = response.getWriter();
 		
 		if(NameValidator.validateName(name)){
-			writer.append(name);
+			HttpSession session = request.getSession(true);
+			session.setAttribute("logged_in_username", name);
+			response.sendRedirect("main.jsp");
+			
 		} else {
 			writer.append("Seu nome é inválido!");
 		}
