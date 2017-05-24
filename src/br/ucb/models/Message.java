@@ -1,10 +1,12 @@
 package br.ucb.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class Message {
+public class Message implements Serializable{
 
+	private static final long serialVersionUID = -2814170274632119790L;
 	private GregorianCalendar date;
 	private String content;
 	private Person author;

@@ -18,7 +18,8 @@
 <body>
 	<div class="container">
 		<div class="card card-container">
-			<center><h1>Chat</h1></center>
+			<center><h1>Big Chat</h1></center>
+			<center>Welcome to Big Chat! A web platform where you can spend a lot of time and have fun.</center>
 			<form method="post" action="AuthenticationServlet">
 				<input type="text" name="username" class="form-control" placeholder="Nome" required="required"/><br/>
 				<input type="submit" class="btn btn-lg btn-primary btn-block btn-signin" value="Entrar"/>

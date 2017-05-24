@@ -1,7 +1,10 @@
 package br.ucb.models;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable{
 	
+	private static final long serialVersionUID = 1224562394177054868L;
 	private String name;
 
 	public Person(String name){

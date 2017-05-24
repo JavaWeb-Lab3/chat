@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import br.ucb.models.Message;
 import br.ucb.models.Person;
+import br.ucb.models.Room;
 
 /**
  * Servlet implementation class MessageServlet
@@ -20,7 +21,7 @@ import br.ucb.models.Person;
 @WebServlet("/MessageServlet")
 public class MessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Message> messages = new ArrayList();
+	private Room room = new Room();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,21 +43,14 @@ public class MessageServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
-		 
 		 Message message = new Message();
 		 HttpSession session = request.getSession(true);
 		 
 		 message.setAuthor(new Person(session.getAttribute("logged_in_username").toString()));
 		 message.setContent(request.getParameter("message_text"));
-		 messages.add(message);
-		 
-		 String allMessagesToShow = "";
-		 for(Message singleMessage : messages){
-			 allMessagesToShow = allMessagesToShow + "<b>"+singleMessage.getAuthor().getName() + "</b>" + 
-					 ": " +singleMessage.getContent() + "<br/>";
-		 }
-		 
-		 request.setAttribute("all_messages", allMessagesToShow);
+		 room.getMessages().add(message);
+
+		 request.setAttribute("all_messages", room.getMessages());
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("main.jsp");
 		 dispatcher.forward(request, response);
 		 

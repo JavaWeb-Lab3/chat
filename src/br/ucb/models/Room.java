@@ -1,12 +1,14 @@
 package br.ucb.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Room {
+public class Room implements Serializable{
 	
+	private static final long serialVersionUID = 6339196700575883922L;
 	private String name;
 	private ArrayList<Person> members;
-	private ArrayList<Message> messages;
+	private ArrayList<Message> messages = new ArrayList<>();
 	
 	public String getName() {
 		return name;
@@ -27,5 +29,7 @@ public class Room {
 		this.messages = messages;
 	}
 	
-	
+	public void addMessage(Message message){
+		this.messages.add(message);
+	}
 }
